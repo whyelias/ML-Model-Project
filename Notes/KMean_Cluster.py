@@ -64,16 +64,30 @@ for idx in range(k):
     
     clusters[idx] = cluster
 
+# Plot initial data points
+fig = plt.figure(0)
+plt.grid(True)
+plt.scatter(X[:,0],X[:,1])
+plt.show()
+
+# plot initial cluster centers
+fig = plt.figure(1)
+plt.scatter(X[:,0],X[:,1])
+plt.grid(True)
+for i in clusters:
+    center = clusters[i]['center']
+    plt.scatter(center[0],center[1],marker = '*',c = 'red')
+plt.show()
+
 clusters = assign_clusters(X,clusters)
 clusters = update_clusters(X,clusters)
 pred = pred_cluster(X,clusters)
 
-# Plot initial clusters and centers
-fig = plt.figure(0)
+# Final plot with clustered data points and updated cluster centers
+fig = plt.figure(2)
 plt.grid(True)
 plt.scatter(X[:,0],X[:,1],c=pred)
 for i in clusters:
     center = clusters[i]['center']
     plt.scatter(center[0],center[1],marker='^',c='red')
 plt.show()
-
